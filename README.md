@@ -1,4 +1,4 @@
-# Java Cryptography Best Practices & Sample Algorithms
+# Java Cryptography Example For Key Exchange, Signing, Encryption, and Hashing
 This document outlines the best practices for cryptographic algorithms in Java, focusing on modern, secure choices for key exchange, signing, encryption, and hashing.
 
 
