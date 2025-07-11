@@ -1,7 +1,8 @@
 # Java Cryptography Best Practices & Sample Algorithms
+This document outlines the best practices for cryptographic algorithms in Java, focusing on modern, secure choices for key exchange, signing, encryption, and hashing.
 
 
-# Java Cryptography Best Practices & Sample Algorithms
+## Asymmetric Algorithms Guidelines
 X25519 and Ed25519 are recommended for new systems.
 RSA is still widely used but is considered less secure for new applications.
 | Algorithm   | Use for Key Exchange? | Use for Signing? | Best Usage                               |
