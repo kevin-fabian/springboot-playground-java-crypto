@@ -8,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.security.*;
+import java.security.spec.ECGenParameterSpec;
 import java.time.Instant;
 import java.util.Date;
 
@@ -16,12 +17,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class JwtAsymmetricTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {"RSA", "Ed25519"})
-    void testJwtAsymmetric(String algorithm) throws NoSuchAlgorithmException {
+    @ValueSource(strings = {"RSA", "Ed25519", "EC"})
+    void testAsymmetricSignAndVerify(String algorithm) throws NoSuchAlgorithmException, InvalidAlgorithmParameterException {
         // Generate RSA key pair
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(algorithm);
-        if(algorithm.equals("RSA")){
-                    keyPairGenerator.initialize(2048);
+        if ("RSA".equals(algorithm)) {
+            keyPairGenerator.initialize(2048);
+        } else if ("EC".equals(algorithm)) {
+            ECGenParameterSpec ecSpec = new ECGenParameterSpec("secp256r1");
+            keyPairGenerator.initialize(ecSpec);
         }
         KeyPair keyPair = keyPairGenerator.generateKeyPair();
         PrivateKey privateKey = keyPair.getPrivate();
