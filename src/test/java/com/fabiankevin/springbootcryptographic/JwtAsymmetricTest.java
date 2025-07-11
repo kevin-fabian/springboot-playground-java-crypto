@@ -4,6 +4,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.security.*;
 import java.time.Instant;
@@ -13,11 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class JwtAsymmetricTest {
 
-    @Test
-    void testJwtAsymmetric() throws NoSuchAlgorithmException {
+    @ParameterizedTest
+    @ValueSource(strings = {"RSA", "Ed25519"})
+    void testJwtAsymmetric(String algorithm) throws NoSuchAlgorithmException {
         // Generate RSA key pair
-        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
-        keyPairGenerator.initialize(2048);
+        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(algorithm);
+        if(algorithm.equals("RSA")){
+                    keyPairGenerator.initialize(2048);
+        }
         KeyPair keyPair = keyPairGenerator.generateKeyPair();
         PrivateKey privateKey = keyPair.getPrivate();
         PublicKey publicKey = keyPair.getPublic();

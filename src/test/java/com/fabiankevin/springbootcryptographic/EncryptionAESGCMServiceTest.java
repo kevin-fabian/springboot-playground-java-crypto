@@ -1,16 +1,15 @@
 package com.fabiankevin.springbootcryptographic;
 
-import com.fabiankevin.springbootcryptographic.service.EncryptionService;
+import com.fabiankevin.springbootcryptographic.service.EncryptionAESGCMService;
 import org.junit.jupiter.api.Test;
 
-import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.util.Base64;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class EncryptionServiceTest {
-    private final EncryptionService encryptionService = new EncryptionService();
+class EncryptionAESGCMServiceTest {
+    private final EncryptionAESGCMService encryptionService = new EncryptionAESGCMService();
 
     @Test
      void testEncryptDecrypt() throws Exception {

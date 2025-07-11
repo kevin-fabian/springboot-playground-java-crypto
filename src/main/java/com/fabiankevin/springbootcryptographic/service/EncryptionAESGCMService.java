@@ -10,13 +10,13 @@ import java.security.SecureRandom;
 import java.util.Base64;
 
 @Service
-public class EncryptionService {
+public class EncryptionAESGCMService {
     // 256-bit key (32 bytes), should be securely stored (e.g., in a secret manager)
     private final byte[] ENCRYPTION_KEY = new byte[32];
     private static final int GCM_IV_LENGTH = 12; // Recommended IV length for GCM
     private static final int GCM_TAG_LENGTH = 16; // Authentication tag length in bytes
 
-    public EncryptionService() {
+    public EncryptionAESGCMService() {
         SecureRandom random = new SecureRandom();
         random.nextBytes(ENCRYPTION_KEY);
     }
