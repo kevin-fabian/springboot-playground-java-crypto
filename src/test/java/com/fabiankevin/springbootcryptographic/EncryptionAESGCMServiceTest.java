@@ -18,7 +18,7 @@ class EncryptionAESGCMServiceTest {
         System.out.println("encrypted = " + encrypted);
         String decrypted = encryptionService.decrypt(encrypted);
 
-        assert plaintext.equals(decrypted) : "Decryption did not return the original plaintext";
+        assertEquals(plaintext, decrypted, "Should be able to decrypt back to original plaintext");
     }
 
     @Test
